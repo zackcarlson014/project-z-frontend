@@ -17,11 +17,6 @@ export class NavBar extends Component {
   render() {
     const { activeItem } = this.state
     return (
-      // <Menu>
-      //   <Menu.Item as={NavLink} to='/notes' name='home' active={activeItem === 'home'} onClick={this.handleItemClick} >
-      //     Home
-      //   </Menu.Item>
-      // </Menu>
       <Menu>
         <Menu.Item
           as={NavLink}
@@ -41,6 +36,15 @@ export class NavBar extends Component {
           onClick={this.handleItemClick}
         >
           Create New Note
+        </Menu.Item>
+        <Menu.Item
+          as={NavLink}
+          to='/login'
+          name='login'
+          active={activeItem === 'login'}
+          onClick={this.handleItemClick}
+        >
+          Login
         </Menu.Item>
       </Menu>
     )

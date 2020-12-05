@@ -26,7 +26,7 @@ export class App extends Component {
       <Router>
         <Switch>
           <div>
-              {/* <NavBar /> */}
+              <Route exact path='/' component={loginContainer} />
               <Route exact path='/login' component={loginContainer} />
               <Route component={defaultContainer} />
           </div>
@@ -38,7 +38,7 @@ export class App extends Component {
 
 const loginContainer = () => (
   <div className='App'>
-    <Route exact path="/" render={() => <Redirect to="/login" />} />
+    <Route to="/" render={() => <Redirect to="/login" />} />
     <Route path="/login" component={Login} />
   </div>
 )

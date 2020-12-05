@@ -16,19 +16,16 @@ export class NoteCard extends Component {
     render() {
         return (
             <Card>
-            <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' wrapped ui={false} width='300px' height='300px'/>
-            <Card.Content>
-                <Card.Header>{this.props.title}</Card.Header>
-                <Card.Meta>
-                <span className='date'>Joined in 2015</span>
-                </Card.Meta>
-                <Card.Description>
-                    {this.props.description}
-                </Card.Description>
-            </Card.Content>
-            <Card.Content extra>
-                <button onClick={this.handleDelete}>delete</button>
-            </Card.Content><br/><br/>
+                <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' wrapped ui={false} width='300px' height='300px'/>
+                <Card.Content>
+                    <Card.Header>{this.props.title}</Card.Header>
+                    <Card.Description>
+                        {this.props.description}
+                    </Card.Description>
+                </Card.Content>
+                <Card.Content extra>
+                    <button onClick={this.handleDelete}>delete</button>
+                </Card.Content><br/><br/>
             </Card>
         )
     }

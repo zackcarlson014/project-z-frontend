@@ -10,9 +10,12 @@ export class NotesContainer extends Component {
     render() {
         return (
             <div>
-                {this.props.notes.map(note => {
-                    return <NoteCard key={note.id} {...note}/>
-                })}
+                <h3>Notes Are Fun!!</h3>
+                <div className='ui four cards'>
+                    {this.props.notes.map(note => {
+                        return <NoteCard key={note.id} {...note}/>
+                    })}
+                </div>
             </div>
         )
     }

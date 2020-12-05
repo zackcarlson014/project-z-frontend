@@ -44,8 +44,6 @@ export class NewNoteForm extends Component {
     }
 
 
-
-
     render() {
         const formStyle = {border: '4px solid black', padding: '2%', width: '420px'}
         return (
