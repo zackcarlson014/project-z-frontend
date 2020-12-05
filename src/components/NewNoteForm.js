@@ -6,6 +6,7 @@ export class NewNoteForm extends Component {
 
     state = {
         title: '',
+        image: '',
         description: ''
     }
 
@@ -20,6 +21,7 @@ export class NewNoteForm extends Component {
 
         const newNote = {
             title: this.state.title,
+            image: this.state.image,
             description: this.state.description,
             user_id: 1
         }
@@ -38,6 +40,7 @@ export class NewNoteForm extends Component {
             this.props.addNote(newNote)
             this.setState({
                 title: '',
+                image: '',
                 description: ''
             })
         })
@@ -53,6 +56,8 @@ export class NewNoteForm extends Component {
                     <form onSubmit={this.handleSubmit}>
                         <label for='title'>Title</label><br/>
                         <input type='text' name='title' onChange={this.handleChange} value={this.state.title}/><br/>
+                        <label for='title'>Image</label><br/>
+                        <input type='text' name='image' onChange={this.handleChange} value={this.state.image}/><br/>
                         <label for='description'>Description</label><br/>
                         <textarea rows='5' cols='50' name='description' onChange={this.handleChange} value={this.state.description}></textarea>
                         <input type='submit' />

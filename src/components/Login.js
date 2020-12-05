@@ -25,9 +25,9 @@ export class Login extends Component {
                         </Header>
                         <Form size='large'>
                             <Segment stacked>
-                            <Form.Input fluid icon='user' name='username' iconPosition='left' placeholder='Username' />
+                            <Form.Input onChange={this.handleChange} icon='user' name='username' iconPosition='left' placeholder='Username' />
                             <Form.Input
-                                fluid
+                                onChange={this.handleChange}
                                 icon='lock'
                                 iconPosition='left'
                                 placeholder='Password'
@@ -40,9 +40,6 @@ export class Login extends Component {
                             </Button>
                             </Segment>
                         </Form>
-                        {/* <Message>
-                            New to us? <a href='#'>Sign Up</a>
-                        </Message> */}
                     </Grid.Column>
                 </Grid>
             </div>

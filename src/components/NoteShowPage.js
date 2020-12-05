@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { deleteNote } from '../actions/index.js'
-import { Card, Icon, Image } from 'semantic-ui-react'
-import { Link } from 'react-router-dom';
+import { Card, Image } from 'semantic-ui-react'
 
-export class NoteCard extends Component {
+export class NoteShowPage extends Component {
 
     handleDelete = () => {
         fetch(`http://localhost:3000/notes/${this.props.id}`, {method: 'DELETE'})
@@ -16,6 +15,7 @@ export class NoteCard extends Component {
 
     render() {
         return (
+            <div>
                 <Card>
                     <Image src={this.props.image} wrapped ui={false} width='300px' height='300px' padding='2%'/>
                     <Card.Content>
@@ -25,15 +25,15 @@ export class NoteCard extends Component {
                         </Card.Description>
                     </Card.Content>
                     <Card.Content extra>
-                    <Link exact to={`/notes/${this.props.id}`} ><button>View Note</button></Link>
+                        <button onClick={this.handleDelete}>delete</button>
                     </Card.Content><br/><br/>
                 </Card>
+            </div>
         )
     }
 }
-
 const mapDispatchToProps = {
     deleteNote: deleteNote
 }
 
-export default connect(null, mapDispatchToProps)(NoteCard)
+export default connect(null, mapDispatchToProps)(NoteShowPage)
