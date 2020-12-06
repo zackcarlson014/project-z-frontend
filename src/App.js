@@ -6,9 +6,9 @@ import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom
 import NotesContainer from './components/NotesContainer.js'
 import NewNoteForm from './components/NewNoteForm.js'
 import NoteShowPage from './components/NoteShowPage.js'
+import EditNoteForm from './components/EditNoteForm.js'
 import NavBar from './components/NavBar.js'
 import Login from './components/Login.js'
-
 
 export class App extends Component {
 
@@ -46,7 +46,8 @@ const loginContainer = () => (
 const defaultContainer = () => (
   <div className='App'>
     <NavBar />
-    <Route component={NoteShowPage} path="/notes/:id" />
+    <Route path="/notes/edit/:id" component={EditNoteForm} />
+    <Route path="/notes/:id" component={NoteShowPage} />
     <Route exact path='/notes' component={NotesContainer} />
     <Route exact path='/new-note' component={NewNoteForm} />
   </div>

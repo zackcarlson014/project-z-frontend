@@ -6,5 +6,5 @@ import showNoteReducer from './showNoteReducer.js'
 export default combineReducers({
     notes: noteReducer,
     note: showNoteReducer,
-    auth: authReducer
+    user: authReducer
 })

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { deleteNote, showNote } from '../actions/index.js'
+import { deleteNote, showNote, editNote } from '../actions/index.js'
 import { Card, Image } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 
@@ -18,6 +18,10 @@ export class NoteCard extends Component {
         this.props.showNote(this.props)
     }
 
+    handleEdit = () => {
+        this.props.editNote(this.props)
+    }
+
     render() {
         return (
                 <Card>
@@ -30,6 +34,8 @@ export class NoteCard extends Component {
                     </Card.Content>
                     <Card.Content extra>
                     <Link key={this.props.id} exact to={`/notes/${this.props.id}`} ><button onClick={this.handleShow}>View Note</button></Link>
+                    <Link key={this.props.id} exact to={`/notes/edit/${this.props.id}`} ><button onClick={this.handleEdit}>Edit Note</button></Link>
+                    <button onClick={this.handleDelete}>Delete Note</button>
                     </Card.Content><br/><br/>
                 </Card>
         )
@@ -38,7 +44,8 @@ export class NoteCard extends Component {
 
 const mapDispatchToProps = {
     deleteNote: deleteNote,
-    showNote: showNote
+    showNote: showNote,
+    editNote: editNote
 }
 
 

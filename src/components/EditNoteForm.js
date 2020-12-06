@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addNote } from '../actions/index.js'
+import { editNote } from '../actions/index.js'
 import { Form } from 'semantic-ui-react'
 import { Redirect } from 'react-router'
 
@@ -10,7 +10,7 @@ const options = [
     { key: 'o', text: "Just 'Cuz" , value: 'fun' },
   ]
 
-export class NewNoteForm extends Component {
+export class EditNoteForm extends Component {
 
     state = {
         title: '',
@@ -25,47 +25,8 @@ export class NewNoteForm extends Component {
             [e.target.name]: e.target.value
         })
     }
-
-    handleSubmit = (e) => {
-        e.preventDefault();
-
-        const newNote = {
-            title: this.state.title,
-            image: this.state.image,
-            description: this.state.description,
-            user_id: 1
-        }
-        
-
-        const reqObj = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(newNote)
-        }
-        fetch('http://localhost:3000/notes', reqObj)
-        .then(resp => resp.json())
-        .then(newNote => {
-            this.props.addNote(newNote)
-            this.setState({
-                title: '',
-                image: '',
-                description: '',
-                category: '',
-                redirect: true
-            })
-        })
-    }
-
-
+    
     render() {
-        const { value } = this.state
-        if (this.state.redirect === true ) {
-            return(
-                <Redirect to='/notes'/>
-            )
-        }
         return (
             <Form onSubmit={this.handleSubmit}>
             <Form.Group widths='equal'>
@@ -73,7 +34,6 @@ export class NewNoteForm extends Component {
               <Form.Input onChange={this.handleChange} label='Image' value={this.state.image} name='image' placeholder='Image URL...' />
               <Form.Select
                 fluid
-                name='category'
                 label='Category'
                 options={options}
                 placeholder='Category...'
@@ -86,4 +46,4 @@ export class NewNoteForm extends Component {
     }
 }
 
-export default connect(null, { addNote })(NewNoteForm)
+export default connect(null, { editNote })(EditNoteForm)

@@ -17,7 +17,9 @@ export class NoteShowPage extends Component {
         return (
             <Container>
                 <h1>{this.props.note.title}</h1><br/>
+                <img src={this.props.note.image}/>
                 <p>{this.props.note.description}</p>
+                <button onClick={this.handleDelete}>Delete Note</button>
             </Container>
 
         )
