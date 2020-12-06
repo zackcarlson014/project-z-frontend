@@ -40,11 +40,11 @@ export class NavBar extends Component {
         <Menu.Item
           as={NavLink}
           to='/login'
-          name='login'
-          active={activeItem === 'login'}
+          name='logout'
+          active={activeItem === 'logout'}
           onClick={this.handleItemClick}
         >
-          Login
+          Logout
         </Menu.Item>
         <Menu.Menu position='right'>
         <div className='ui right aligned category search item'>

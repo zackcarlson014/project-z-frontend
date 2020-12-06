@@ -1,13 +1,23 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addNote } from '../actions/index.js'
+import { Form } from 'semantic-ui-react'
+import { Redirect } from 'react-router'
+
+const options = [
+    { key: 'm', text: 'Scholarly', value: 'scholarly' },
+    { key: 'f', text: 'Netflix Show Ideas', value: 'netflix' },
+    { key: 'o', text: "Just 'Cuz" , value: 'fun' },
+  ]
 
 export class NewNoteForm extends Component {
 
     state = {
         title: '',
         image: '',
-        description: ''
+        description: '',
+        category: '',
+        redirect: false
     }
 
     handleChange = (e) => {
@@ -41,29 +51,56 @@ export class NewNoteForm extends Component {
             this.setState({
                 title: '',
                 image: '',
-                description: ''
+                description: '',
+                redirect: true
             })
         })
     }
 
 
     render() {
-        const formStyle = {border: '4px solid black', padding: '2%', width: '420px'}
+        const { value } = this.state
+        if (this.state.redirect === true ) {
+            return(
+                <Redirect to='/notes'/>
+            )
+        }
         return (
-            <div className='App'>
-                <div style={formStyle}>
-                    <h3>Create Note</h3>
-                    <form onSubmit={this.handleSubmit}>
-                        <label for='title'>Title</label><br/>
-                        <input type='text' name='title' onChange={this.handleChange} value={this.state.title}/><br/>
-                        <label for='title'>Image</label><br/>
-                        <input type='text' name='image' onChange={this.handleChange} value={this.state.image}/><br/>
-                        <label for='description'>Description</label><br/>
-                        <textarea rows='5' cols='50' name='description' onChange={this.handleChange} value={this.state.description}></textarea>
-                        <input type='submit' />
-                    </form>
-                </div>
-            </div>
+            <Form onSubmit={this.handleSubmit}>
+            <Form.Group widths='equal'>
+              <Form.Input onChange={this.handleChange} label='Title' value={this.state.title} name='title' placeholder='Note title...' />
+              <Form.Input onChange={this.handleChange} label='Image' value={this.state.image} name='image' placeholder='Image URL...' />
+              <Form.Select
+                fluid
+                label='Category'
+                options={options}
+                placeholder='Category...'
+              />
+            </Form.Group>
+            {/* <Form.Group inline>
+              <label>Size</label>
+              <Form.Radio
+                label='Small'
+                value='sm'
+                checked={value === 'sm'}
+                onChange={this.handleChange}
+              />
+              <Form.Radio
+                label='Medium'
+                value='md'
+                checked={value === 'md'}
+                onChange={this.handleChange}
+              />
+              <Form.Radio
+                label='Large'
+                value='lg'
+                checked={value === 'lg'}
+                onChange={this.handleChange}
+              />
+            </Form.Group> */}
+            <Form.TextArea onChange={this.handleChange} label='Note Description' name='description' value={this.state.description} placeholder="Here's to the blank page..." />
+            <Form.Button type='submit'>Submit</Form.Button>
+          </Form>
         )
     }
 }
