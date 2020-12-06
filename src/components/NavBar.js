@@ -46,6 +46,19 @@ export class NavBar extends Component {
         >
           Login
         </Menu.Item>
+        <Menu.Menu position='right'>
+        <div className='ui right aligned category search item'>
+          <div className='ui transparent icon input'>
+            <input
+              className='prompt'
+              type='text'
+              placeholder='Search Notes...'
+            />
+            <i className='search link icon' />
+          </div>
+          <div className='results' />
+        </div>
+      </Menu.Menu>
       </Menu>
     )
   }

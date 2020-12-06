@@ -46,10 +46,9 @@ const loginContainer = () => (
 const defaultContainer = () => (
   <div className='App'>
     <NavBar />
-    <Route exact path='/notes' component={NotesContainer} />
-    {/* <Route exact path='/notes' render={routerProps => <NotesContainer {...routerProps} notes={this.props.notes}/>} /> */}
-    <Route exact path='/new-note' component={NewNoteForm} />
     <Route component={NoteShowPage} path="/notes/:id" />
+    <Route exact path='/notes' component={NotesContainer} />
+    <Route exact path='/new-note' component={NewNoteForm} />
   </div>
 )
 
@@ -57,11 +56,7 @@ const mapDispatchToProps = {
   fetchNotesSuccess: fetchNotesSuccess
 }
 
-// const mapStateToProps = state => {
-//   return {
-//     notes: state.notes
-//   }
-// }
+
 
 export default connect(null, mapDispatchToProps)(App)
 
