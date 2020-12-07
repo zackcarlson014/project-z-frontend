@@ -47,7 +47,7 @@ const defaultContainer = () => (
   <div className='App'>
     <NavBar />
     <Route path="/notes/edit/:id" component={EditNoteForm} />
-    <Route path="/notes/:id" component={NoteShowPage} />
+    <Route exact path="/notes/:id" component={NoteShowPage} />
     <Route exact path='/notes' component={NotesContainer} />
     <Route exact path='/new-note' component={NewNoteForm} />
   </div>

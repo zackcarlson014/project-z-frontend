@@ -13,9 +13,9 @@ const options = [
 export class EditNoteForm extends Component {
 
     state = {
-        title: '',
-        image: '',
-        description: '',
+        title: this.props.updatedNote.title,
+        image: this.props.updatedNote.image,
+        description: this.props.updatedNote.description,
         category: '',
         redirect: false
     }
@@ -46,4 +46,10 @@ export class EditNoteForm extends Component {
     }
 }
 
-export default connect(null, { editNote })(EditNoteForm)
+const mapStateToProps = state => {
+    return {
+        updatedNote: state.updatedNote
+    }
+}
+
+export default connect(mapStateToProps, { editNote })(EditNoteForm)
