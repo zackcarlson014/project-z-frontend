@@ -6,7 +6,7 @@ export class NotesContainer extends Component {
     render() {
         return (
             <div>
-                <h3>Notes Are Fun!!</h3>
+                <br/><h1>Welcome to Jot, {this.props.user.name}!!</h1><br/><br/>
                 <div className='ui five cards'>
                     {this.props.notes.map(note => {
                         return <NoteCard key={note.id} {...note}/>
@@ -19,7 +19,8 @@ export class NotesContainer extends Component {
 
 const mapStateToProps = (storeState) => {
     return {
-        notes: storeState.notes
+        notes: storeState.notes,
+        user: storeState.user
     }
 }
 

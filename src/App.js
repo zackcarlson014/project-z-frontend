@@ -39,7 +39,7 @@ export class App extends Component {
 const loginContainer = () => (
   <div className='App'>
     <Route to="/" render={() => <Redirect to="/login" />} />
-    <Route path="/login" component={Login} />
+    <Route exact path="/login" component={Login} />
   </div>
 )
 

@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
-import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Segment } from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import { loginSuccess } from '../actions/index.js'
+import { Redirect } from 'react-router'
 
 export class Login extends Component {
 
     state ={
         username: '',
-        password: ''
+        password: '',
+        redirect: false
     }
 
     handleChange = e => {
@@ -14,25 +18,58 @@ export class Login extends Component {
         })
     }
 
+    handleSubmit = (e) => {
+        e.preventDefault();
+
+        const newUser = {
+            name: this.state.username,
+            password: this.state.password,
+        } 
+
+        const reqObj = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newUser)
+        }
+        fetch('http://localhost:3000/users', reqObj)
+        .then(resp => resp.json())
+        .then(newUser => {
+            this.props.loginSuccess(newUser)
+            this.setState({
+                username: '',
+                password: '',
+                redirect: true
+            })
+        })
+    }
+
 
     render() {
+        if (this.state.redirect === true) {
+            return (
+                <Redirect to='/notes'/>
+            )
+        }
         return (
             <div>
-                <h1>Welcome To Notes!!</h1>
+                <br/><h1>Welcome To Notes!!</h1>
                 <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
                     <Grid.Column style={{ maxWidth: 450 }}>
                         <Header as='h2' color='blue' textAlign='center'>
                             Log-in to your account
                         </Header>
-                        <Form size='large'>
+                        <Form size='large' onSubmit={this.handleSubmit}>
                             <Segment stacked>
-                            <Form.Input onChange={this.handleChange} icon='user' name='username' iconPosition='left' placeholder='Username' />
+                            <Form.Input onChange={this.handleChange} icon='user' name='username' value={this.state.username} iconPosition='left' placeholder='Username' />
                             <Form.Input
                                 onChange={this.handleChange}
                                 icon='lock'
                                 iconPosition='left'
                                 placeholder='Password'
                                 name='password'
+                                value={this.state.password}
                                 type='password'
                             />
 
@@ -48,4 +85,6 @@ export class Login extends Component {
     }
 }
 
-export default Login
+
+
+export default connect(null, { loginSuccess })(Login)

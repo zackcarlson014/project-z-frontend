@@ -33,6 +33,13 @@ export const editNote = (updatedNote) => {
     }
 }
 
+export const editNoteSuccess = (note) => {
+    return {
+        type: 'EDIT_NOTE_SUCCESS',
+        note
+    }
+}
+
 export const showNote = (note) => {
     return {
         type: 'SHOW_NOTE',

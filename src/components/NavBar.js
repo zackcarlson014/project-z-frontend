@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react'
-import { NavLink, withRouter } from 'react-router-dom';
-import { Input, Menu } from 'semantic-ui-react'
+import { NavLink } from 'react-router-dom';
+import { Menu } from 'semantic-ui-react'
 
 export class NavBar extends Component {
   state = { 
@@ -17,7 +17,7 @@ export class NavBar extends Component {
   render() {
     const { activeItem } = this.state
     return (
-      <Menu>
+      <Menu inverted color='black'>
         <Menu.Item
           as={NavLink}
           to='/notes'

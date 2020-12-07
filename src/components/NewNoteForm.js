@@ -34,8 +34,7 @@ export class NewNoteForm extends Component {
             image: this.state.image,
             description: this.state.description,
             user_id: 1
-        }
-        
+        } 
 
         const reqObj = {
             method: 'POST',
@@ -60,7 +59,7 @@ export class NewNoteForm extends Component {
 
 
     render() {
-        const { value } = this.state
+        // const { value } = this.state
         if (this.state.redirect === true ) {
             return(
                 <Redirect to='/notes'/>

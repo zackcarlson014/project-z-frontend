@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { editNote } from '../actions/index.js'
+import { editNoteSuccess } from '../actions/index.js'
 import { Form } from 'semantic-ui-react'
 import { Redirect } from 'react-router'
 
@@ -25,8 +25,40 @@ export class EditNoteForm extends Component {
             [e.target.name]: e.target.value
         })
     }
+
+    handleSubmit = () => {
+
+        const updatedNote = {
+            title: this.state.title,
+            image: this.state.image,
+            description: this.state.description,
+        }
+
+        const reqObj = {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updatedNote)
+        }
+        
+        fetch(`http://localhost:3000/notes/${this.props.updatedNote.id}`, reqObj)
+        .then(resp => resp.json())
+        .then(note => {
+            console.log(note, "this is the note from the patch")
+            this.props.editNoteSuccess(note)
+            this.props.history.push('/notes')
+        })
+        
+    }
+
     
     render() {
+        if (this.state.redirect === true) {
+            return (
+                <Redirect to='/notes'/>
+            )
+        }
         return (
             <Form onSubmit={this.handleSubmit}>
             <Form.Group widths='equal'>
@@ -52,4 +84,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { editNote })(EditNoteForm)
+export default connect(mapStateToProps, { editNoteSuccess })(EditNoteForm)

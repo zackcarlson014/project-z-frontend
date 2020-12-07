@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { deleteNote, showNote, editNote } from '../actions/index.js'
-import { Card, Image } from 'semantic-ui-react'
+import { Card, Image, Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 
 export class NoteCard extends Component {
@@ -32,10 +32,12 @@ export class NoteCard extends Component {
                             {this.props.description}
                         </Card.Description>
                     </Card.Content>
-                    <Card.Content extra>
-                    <Link key={this.props.id} exact to={`/notes/${this.props.id}`} ><button onClick={this.handleShow}>View Note</button></Link>
-                    <Link key={this.props.id} exact to={`/notes/edit/${this.props.id}`} ><button onClick={this.handleEdit}>Edit Note</button></Link>
-                    <button onClick={this.handleDelete}>Delete Note</button>
+                    <Card.Content extra >
+                        <div className='ui two buttons'>
+                                <Link key={this.props.id} exact to={`/notes/${this.props.id}`} ><Button color='blue' onClick={this.handleShow}>View Note</Button></Link>
+                                <Link key={this.props.name} exact to={`/notes/edit/${this.props.id}`} ><Button color='blue' onClick={this.handleEdit}>Edit Note</Button></Link>
+                        </div><br/><br/>
+                            <Button color='red' onClick={this.handleDelete}>Delete Note</Button>
                     </Card.Content><br/><br/>
                 </Card>
         )
