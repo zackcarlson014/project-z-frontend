@@ -79,7 +79,7 @@ export class NewNoteForm extends Component {
               />
             </Form.Group>
             <Form.TextArea onChange={this.handleChange} label='Note Description' name='description' value={this.state.description} placeholder="Here's to the blank page..." />
-            <Form.Button type='submit'>Submit</Form.Button>
+            <Form.Button color='green' type='submit'>Submit</Form.Button>
           </Form>
         )
     }

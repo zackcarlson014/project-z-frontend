@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { editNoteSuccess } from '../actions/index.js'
 import { Form } from 'semantic-ui-react'
-import { Redirect } from 'react-router'
+
 
 const options = [
     { key: 'm', text: 'Scholarly', value: 'scholarly' },
@@ -17,7 +17,6 @@ export class EditNoteForm extends Component {
         image: this.props.updatedNote.image,
         description: this.props.updatedNote.description,
         category: '',
-        redirect: false
     }
 
     handleChange = (e) => {
@@ -45,7 +44,6 @@ export class EditNoteForm extends Component {
         fetch(`http://localhost:3000/notes/${this.props.updatedNote.id}`, reqObj)
         .then(resp => resp.json())
         .then(note => {
-            console.log(note, "this is the note from the patch")
             this.props.editNoteSuccess(note)
             this.props.history.push('/notes')
         })
@@ -54,11 +52,6 @@ export class EditNoteForm extends Component {
 
     
     render() {
-        if (this.state.redirect === true) {
-            return (
-                <Redirect to='/notes'/>
-            )
-        }
         return (
             <Form onSubmit={this.handleSubmit}>
             <Form.Group widths='equal'>
@@ -72,7 +65,7 @@ export class EditNoteForm extends Component {
               />
             </Form.Group>
             <Form.TextArea onChange={this.handleChange} label='Note Description' name='description' value={this.state.description} placeholder="Here's to the blank page..." />
-            <Form.Button type='submit'>Submit</Form.Button>
+            <Form.Button color='green' type='submit'>Submit</Form.Button>
           </Form>
         )
     }

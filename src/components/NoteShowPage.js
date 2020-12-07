@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { deleteNote } from '../actions/index.js'
-import { Container } from 'semantic-ui-react'
+import { deleteNote, editNote } from '../actions/index.js'
+import { Container, Button } from 'semantic-ui-react'
+import { Link } from 'react-router-dom';
 
 export class NoteShowPage extends Component {
 
@@ -10,23 +11,30 @@ export class NoteShowPage extends Component {
         .then(resp => resp.json())
         .then(data => {
             this.props.deleteNote(this.props.note.id)
+            this.props.history.push('/notes')
         })
+    }
+
+    handleEdit = () => {
+        this.props.editNote(this.props.note)
     }
 
     render() {
         return (
             <Container>
                 <h1>{this.props.note.title}</h1><br/>
-                <img src={this.props.note.image} alt=''/>
+                <img src={this.props.note.image} alt='' width='300px' height='300px'/>
                 <p>{this.props.note.description}</p>
-                <button onClick={this.handleDelete}>Delete Note</button>
+                <Button color='red' onClick={this.handleDelete}>Delete Note</Button>
+                <Link key={this.props.note.id} exact to={`/notes/edit/${this.props.note.id}`} ><Button color='blue' onClick={this.handleEdit}>Edit Note</Button></Link>
             </Container>
 
         )
     }
 }
 const mapDispatchToProps = {
-    deleteNote: deleteNote
+    deleteNote: deleteNote,
+    editNote: editNote
 }
 
 const mapStateToProps = state => {

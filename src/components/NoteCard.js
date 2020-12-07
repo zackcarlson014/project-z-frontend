@@ -24,7 +24,7 @@ export class NoteCard extends Component {
 
     render() {
         return (
-                <Card>
+                <Card color='blue'>
                     <Image src={this.props.image} wrapped ui={false} width='300px' height='300px' padding='2%'/>
                     <Card.Content>
                         <Card.Header>{this.props.title}</Card.Header>
@@ -33,11 +33,12 @@ export class NoteCard extends Component {
                         </Card.Description>
                     </Card.Content>
                     <Card.Content extra >
-                        <div className='ui two buttons'>
-                                <Link key={this.props.id} exact to={`/notes/${this.props.id}`} ><Button color='blue' onClick={this.handleShow}>View Note</Button></Link>
+                        <Link key={this.props.id} exact to={`/notes/${this.props.id}`} ><Button color='blue' onClick={this.handleShow}>View Note</Button></Link>
+                        {/* <div className='fluid ui two buttons'>
+                                
                                 <Link key={this.props.name} exact to={`/notes/edit/${this.props.id}`} ><Button color='blue' onClick={this.handleEdit}>Edit Note</Button></Link>
-                        </div><br/><br/>
-                            <Button color='red' onClick={this.handleDelete}>Delete Note</Button>
+                        </div><br/><br/> */}
+                            {/* <Button color='red' onClick={this.handleDelete}>Delete Note</Button> */}
                     </Card.Content><br/><br/>
                 </Card>
         )
