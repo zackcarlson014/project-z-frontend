@@ -6,7 +6,7 @@ export class NotesContainer extends Component {
     render() {
         return (
             <div>
-                <br/><h1>Welcome to Jot, {this.props.user.name}!!</h1><br/><br/>
+                <br/><h1>Welcome to Flatnote, {this.props.user.name}!!</h1><br/><br/>
                 <div className='ui five cards'>
                     {this.props.notes.map(note => {
                         return <NoteCard key={note.id} {...note}/>

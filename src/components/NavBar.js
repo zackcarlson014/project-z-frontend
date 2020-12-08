@@ -16,8 +16,13 @@ export class NavBar extends Component {
 
   render() {
     const { activeItem } = this.state
+    const style = {
+      position: "fixed",
+        width: "100%",
+        zIndex: "999"
+    }
     return (
-      <Menu inverted color='black'>
+      <Menu inverted color='black' style={style}>
         <Menu.Item
           as={NavLink}
           to='/notes'
@@ -27,7 +32,6 @@ export class NavBar extends Component {
         >
           Home
         </Menu.Item>
-
         <Menu.Item
           as={NavLink}
           to='/new-note'
@@ -51,6 +55,7 @@ export class NavBar extends Component {
           <div className='ui transparent icon input'>
             <input
               className='prompt'
+              textColor='white'
               type='text'
               placeholder='Search Notes...'
             />

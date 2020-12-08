@@ -45,7 +45,7 @@ export class EditNoteForm extends Component {
         .then(resp => resp.json())
         .then(note => {
             this.props.editNoteSuccess(note)
-            this.props.history.push('/notes')
+            this.props.history.push(`/notes`)
         })
         
     }
