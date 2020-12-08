@@ -23,8 +23,8 @@ export class NoteShowPage extends Component {
         return (
             <Container>
                 <br/><br/><h1>{this.props.note.title}</h1><br/>
-                <img src={this.props.note.image} alt='' width='300px' height='300px'/>
-                <p>{this.props.note.description}</p>
+                <img src={this.props.note.image} alt='' width='300px' height='300px'/><br/><br/><br/><br/>
+                <p><strong>{this.props.note.description}</strong></p><br/><br/><br/><br/>
                 <Button color='red' onClick={this.handleDelete}>Delete Note</Button>
                 <Link key={this.props.note.id} exact to={`/notes/edit/${this.props.note.id}`} ><Button color='blue' onClick={this.handleEdit}>Edit Note</Button></Link>
             </Container>
