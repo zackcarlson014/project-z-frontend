@@ -54,7 +54,7 @@ export class EditNoteForm extends Component {
     render() {
         return (
             <Form onSubmit={this.handleSubmit}>
-            <Form.Group widths='equal'>
+            <br/><br/><br/><Form.Group widths='equal'>
               <Form.Input onChange={this.handleChange} label='Title' value={this.state.title} name='title' placeholder='Note title...' />
               <Form.Input onChange={this.handleChange} label='Image' value={this.state.image} name='image' placeholder='Image URL...' />
               <Form.Select

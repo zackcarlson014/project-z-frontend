@@ -22,7 +22,7 @@ export class NoteShowPage extends Component {
     render() {
         return (
             <Container>
-                <h1>{this.props.note.title}</h1><br/>
+                <br/><br/><h1>{this.props.note.title}</h1><br/>
                 <img src={this.props.note.image} alt='' width='300px' height='300px'/>
                 <p>{this.props.note.description}</p>
                 <Button color='red' onClick={this.handleDelete}>Delete Note</Button>
